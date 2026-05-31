@@ -1006,11 +1006,17 @@
 
     document.querySelectorAll(".project").forEach(project => {
       project.addEventListener("click", (e) => {
-        // Reset 3D tilt before opening
         project.style.transform = "";
         modalTitle.textContent = project.dataset.title;
         modalDesc.textContent = project.dataset.desc;
-        modalProjectLink.href = project.dataset.link || "https://github.com/racharajeshai";
+        const link = project.dataset.link;
+        if (link && link !== "#") {
+          modalProjectLink.href = link;
+          modalProjectLink.textContent = "Open Project on GitHub";
+          modalProjectLink.style.display = "";
+        } else {
+          modalProjectLink.style.display = "none";
+        }
         modalTags.innerHTML = "";
         project.dataset.tags.split(" · ").forEach(tag => {
           const span = document.createElement("span");
