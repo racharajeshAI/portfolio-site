@@ -1001,7 +1001,7 @@
           <h2>Selected work</h2>
         </div>
         <div class="projects-grid reveal-stagger">
-          <article class="project panel" data-title="Closet Compass" data-desc="Weather-aware outfit recommendation app. Picks outfits based on live weather, occasion, and time of day. Deterministic engine with color coordination, per-session occasion toggles, multi-profile support, and gender-aware shop suggestions. Built with React, TypeScript, and Vite. Closed source." data-tags="React · TypeScript · Vite · Weather API · Closed Source" data-link="#">
+          <article class="project panel" data-title="Closet Compass" data-desc="Weather-aware outfit recommendation app. Picks outfits based on live weather, occasion, and time of day. Deterministic engine with color coordination, per-session occasion toggles, multi-profile support, and gender-aware shop suggestions. Built with React, TypeScript, and Vite. Closed source." data-tags="React · TypeScript · Vite · Weather API · Closed Source" data-link="#" data-web="https://closet-compass.vercel.app">
             <div><div class="project-badge">APP</div><h3>Closet Compass</h3><p>Weather-aware outfit recommendations — deterministic engine, occasion toggles, multi-profile, and shop links. Closed source.</p></div>
             <div class="tags"><span class="tag">React</span><span class="tag">TypeScript</span><span class="tag">Vite</span><span class="tag">Weather API</span><span class="tag">Closed Source</span></div>
           </article>
@@ -1065,7 +1065,8 @@
       <p id="modalDesc">Project details</p>
       <div class="tags" id="modalTags"></div>
       <div class="modal-actions">
-        <a class="btn primary" id="modalProjectLink" href="https://github.com/racharajeshai" target="_blank" rel="noreferrer">Open Project on GitHub</a>
+        <a class="btn primary" id="modalWebLink" href="#" target="_blank" rel="noreferrer" style="display:none">Visit Website</a>
+        <a class="btn" id="modalProjectLink" href="https://github.com/racharajeshai" target="_blank" rel="noreferrer">Open Project on GitHub</a>
         <button class="btn" id="closeModal">Close</button>
       </div>
     </div>
@@ -1246,6 +1247,14 @@
           modalProjectLink.style.display = '';
         } else {
           modalProjectLink.style.display = 'none';
+        }
+        const webLink = document.getElementById('modalWebLink');
+        const web = project.dataset.web;
+        if (web) {
+          webLink.href = web;
+          webLink.style.display = '';
+        } else {
+          webLink.style.display = 'none';
         }
         modalTags.innerHTML = '';
         project.dataset.tags.split(' · ').forEach(tag => {
